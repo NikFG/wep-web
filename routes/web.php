@@ -2,6 +2,7 @@
 
 use App\Cidade;
 use App\Estado;
+use App\Produto;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/produtos','ProdutoController@index');
+Route::get('/produtos/create', 'ProdutoController@create');
+Route::post('/produtos/create', 'ProdutoController@store');
+Route::get('/produtos/edit/{id}', 'ProdutoController@edit');
+Route::post('/produtos/edit/{id}', 'ProdutoController@update');
+Route::get('/produtos/show/{id}', 'ProdutoController@show');
+Route::delete('/produtos/delete/{id}', 'ProdutoController@destroy');
+Route::post('/produtos/duplicate/{id}','ProdutoController@duplicate');
+Route::get('/produto/json', function(){
+	$produtos = Produto::all();
+	return $produtos->toJson();
 });
 
 Route::get('/estados', 'EstadoController@index');
