@@ -13,8 +13,8 @@ class CreateCidadesTable extends Migration {
     public function up() {
         Schema::create('cidades', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->integer('codigo_ibge');
+            $table->string('nome', 50);
+            $table->integer('codigo_ibge', 7);
             $table->bigInteger('estado_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();

@@ -13,7 +13,7 @@
     @foreach ($cidades as $c)
     {{$c->nome}}
     {{$c->codigo_ibge}}
-    {{$c->estado->nome}}
+    {{$c->estado->nome}}    
     <a href="/cidades/show/{{$c->id}}">Exibir</a>
     <a href="/cidades/edit/{{$c->id}}">Editar</a>
     <form method="POST" action='/cidades/delete/{{$c->id}}'>
