@@ -4,16 +4,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmailsTable extends Migration {
+class CreateRamoAtividadesTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
     public function up() {
-        Schema::create('emails', function (Blueprint $table) {
+        Schema::create('ramo_atividades', function (Blueprint $table) {
             $table->id();
-            $table->string('endereco', 50);
+            $table->string('nome', 100);
+            $table->string('descricao')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -25,6 +26,6 @@ class CreateEmailsTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('emails');
+        Schema::dropIfExists('ramo_atividades');
     }
 }

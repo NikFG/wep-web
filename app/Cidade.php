@@ -10,4 +10,7 @@ class Cidade extends Model {
     public function estado() {
         return $this->belongsTo('App\Estado');
     }
+    public function endereco() {
+        return $this->hasMany('App\Endereco');
+    }
 }
