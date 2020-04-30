@@ -14,7 +14,7 @@ class CreateRamoAtividadesTable extends Migration {
         Schema::create('ramo_atividades', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 100);
-            $table->string('descricao')->nullable();
+            $table->text('descricao')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

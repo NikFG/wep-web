@@ -20,7 +20,7 @@ class CreateEnderecosTable extends Migration {
             $table->string('complemento', 100)->nullable();
             $table->string('latitude', 45)->nullable();
             $table->string('longitude', 45)->nullable();
-            $table->string('observacao')->nullable();
+            $table->text('observacao')->nullable();
             $table->bigInteger('cidade_id')->unsigned();
             $table->bigInteger('pessoa_id')->unsigned();
             $table->timestamps();
