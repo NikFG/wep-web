@@ -9,55 +9,57 @@ class EstadoController extends Controller {
 
     public function index() {
         $estados = Estado::all();
-        $a = "teste";
-        return view('estados.index', compact(['estados', 'a']));
+        return view('Estado.index', compact('estados'));
     }
     public function indexDeleted() {
         $estados = Estado::onlyTrashed()->get();
-        return view('estados.indexDeleted', compact(['estados', 'a']));
+        return view('Estado.indexDeleted', compact('estados'));
     }
 
     public function create() {
-        return view('estados.create');
+        return view('Estado.create');
     }
 
     public function store(Request $request) {
         $request->validate([
-            'nome' => 'required|max:50',
+            'nome' => 'required|max:20',
             'sigla' => 'required|max:2',
         ]);
-        $estado = new Estado();
-        $estado->nome = $request->input('nome');
-        $estado->sigla = $request->input('sigla');
-        $estado->save();
-        return redirect('/estados');
+
+        $estados = new Estado();
+        $estados->nome = $request->input('nome');
+        $estados->sigla = $request->input('sigla');
+        $estados->save();
+        
+        return redirect('/Estado');
     }
 
     public function show($id) {
-        $estado = Estado::findOrFail($id);
-        return view('estados.show', compact(['estado']));
+        $estados = Estado::findOrFail($id);
+        return view('Estado.show', compact(['estados']));
     }
 
     public function edit($id) {
-        $estado = Estado::findOrFail($id);
-        return view('estados.edit', compact(['estado']));
+        $estados = Estado::findOrFail($id);
+        return view('Estado.edit', compact(['estados']));
     }
 
     public function update(Request $request, $id) {
         $request->validate([
-            'nome' => 'required|max:50',
+            'nome' => 'required|max:20',
             'sigla' => 'required|max:2',
         ]);
-        $estado = Estado::findOrFail($id);
-        $estado->nome = $request->input('nome');
-        $estado->sigla = $request->input('sigla');
-        $estado->save();
-        return redirect('/estados');
+
+        $estados = Estado::findOrFail($id);
+        $estados->nome = $request->input('nome');
+        $estados->sigla = $request->input('sigla');
+        $estados->save();
+        return redirect('/Estado');
     }
 
     public function destroy($id) {
-        $estado = Estado::findOrFail($id);
-        $estado->delete();
-        return redirect('/estados');
+        $estados = Estado::findOrFail($id);
+        $estados->delete();
+        return redirect('/Estado');
     }
 }
