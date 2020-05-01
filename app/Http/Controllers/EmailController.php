@@ -9,11 +9,11 @@ class EmailController extends Controller {
 
     public function index() {
         $emails = Email::all();
-        return view('email.index', compact('emails'));
+        return view('Email.index', compact('emails'));
     }
 
     public function create() {
-        return view('email.create');
+        return view('Email.create');
     }
 
     public function store(Request $request) {
@@ -24,20 +24,20 @@ class EmailController extends Controller {
         $email->endereco = $request->input('endereco');
 
         $email->save();
-        return redirect('/email');
+        return redirect('/Email');
     }
 
     public function show($id) {
         $id = decrypt($id);
         $email = Email::findOrFail($id);
 
-        return view('email.show', compact('email'));
+        return view('Email.show', compact('email'));
     }
 
     public function edit($id) {
         $id = decrypt($id);
         $email = Email::findOrFail($id);
-        return view('email.edit', compact('email'));
+        return view('Email.edit', compact('email'));
 
     }
 
@@ -50,7 +50,7 @@ class EmailController extends Controller {
         $email->endereco = $request->input('endereco');
 
         $email->save();
-        return redirect('/email');
+        return redirect('/Email');
     }
 
     public function destroy($id) {
@@ -58,6 +58,6 @@ class EmailController extends Controller {
         $email = Email::findOrFail($id);
         $email->delete();
 
-        return redirect('/email');
+        return redirect('/Email');
     }
 }

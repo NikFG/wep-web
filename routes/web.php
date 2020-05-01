@@ -1,6 +1,7 @@
 <?php
 
 use App\Cidade;
+use App\Cliente;
 use App\Estado;
 use App\Produto;
 use Illuminate\Support\Facades\Route;
@@ -20,17 +21,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/produtos','ProdutoController@index');
+Route::get('/produtos', 'ProdutoController@index');
 Route::get('/produtos/create', 'ProdutoController@create');
 Route::post('/produtos/create', 'ProdutoController@store');
 Route::get('/produtos/edit/{id}', 'ProdutoController@edit');
 Route::post('/produtos/edit/{id}', 'ProdutoController@update');
 Route::get('/produtos/show/{id}', 'ProdutoController@show');
 Route::delete('/produtos/delete/{id}', 'ProdutoController@destroy');
-Route::post('/produtos/duplicate/{id}','ProdutoController@duplicate');
-Route::get('/produto/json', function(){
-	$produtos = Produto::all();
-	return $produtos->toJson();
+Route::post('/produtos/duplicate/{id}', 'ProdutoController@duplicate');
+Route::get('/produto/json', function () {
+    $produtos = Produto::all();
+    return $produtos->toJson();
 });
 
 Route::get('/estados', 'EstadoController@index');
@@ -57,4 +58,10 @@ Route::delete('/cidades/delete/{id}', 'CidadeController@destroy');
 Route::get('/cidades/json', function () {
     $cidades = Cidade::all();
     return $cidades->toJson();
+});
+
+Route::get('ClienteVendedor', function () {
+    $cliente = Cliente::with('vendedores')->get();
+    return $cliente->toJson();
+
 });

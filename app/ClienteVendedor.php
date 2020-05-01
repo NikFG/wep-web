@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PessoaVendedor extends Model {
+class ClienteVendedor extends Model {
     protected $primaryKey = ['cliente_id', 'vendedor_id'];
 
-    protected $table = 'pessoas_vendedores';
+    protected $table = 'clientes_vendedores';
 }

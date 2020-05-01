@@ -15,7 +15,7 @@ class CreatePessoasTable extends Migration {
             $table->id();
             $table->string('nome', 100);
             $table->char('tipo_pessoa', 1);
-            $table->string('cnpj_cpf', 14);
+            $table->string('cpf_cnpj', 14);
             $table->string('razao_social', 120)->nullable();
             $table->string('inscricao_estadual', 20)->nullable();
             $table->boolean('ativo')->nullable()->default(true);

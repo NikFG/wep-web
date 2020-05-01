@@ -8,7 +8,7 @@ class Vendedor extends Model {
     protected $table = 'vendedores';
 
     public function clientes() {
-        return $this->belongsToMany('App\Cliente', 'clientes')->withPivot(['horas_semanais']);
+        return $this->belongsToMany('App\Cliente', 'clientes_vendedores');
     }
     public function pessoa() {
         return $this->belongsTo('App\Pessoa');
