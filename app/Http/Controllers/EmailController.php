@@ -12,21 +12,10 @@ class EmailController extends Controller {
         return view('email.index', compact('emails'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create() {
         return view('email.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request) {
         $request->validate([
             'endereco' => 'email address',
@@ -38,12 +27,6 @@ class EmailController extends Controller {
         return redirect('/email');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id) {
         $id = decrypt($id);
         $email = Email::findOrFail($id);
@@ -51,12 +34,6 @@ class EmailController extends Controller {
         return view('email.show', compact('email'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id) {
         $id = decrypt($id);
         $email = Email::findOrFail($id);
@@ -64,17 +41,10 @@ class EmailController extends Controller {
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id) {
         $id = decrypt($id);
         $request->validate([
-            'endereco' => 'email address',
+            'endereco' => 'required|email address|max:50|unique:email',
         ]);
         $email = Email::findOrFail($id);
         $email->endereco = $request->input('endereco');
@@ -83,12 +53,6 @@ class EmailController extends Controller {
         return redirect('/email');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id) {
         $id = decrypt($id);
         $email = Email::findOrFail($id);
